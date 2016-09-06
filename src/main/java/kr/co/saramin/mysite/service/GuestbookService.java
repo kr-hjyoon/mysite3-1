@@ -13,7 +13,16 @@ public class GuestbookService {
 	@Autowired
 	private GuestbookDao guestbookDao;
 	
-	public List<GuestbookVo> getList() {
+	public List<GuestbookVo> getMessageList() {
+		System.out.println( guestbookDao );
 		return guestbookDao.getList();
+	}
+	
+	public boolean deleteMessage( GuestbookVo vo ) {
+		return guestbookDao.delete( vo ) == 1;
+	}
+	
+	public boolean insertMessage( GuestbookVo vo ) {
+		return guestbookDao.insert( vo ) == 1;
 	}
 }

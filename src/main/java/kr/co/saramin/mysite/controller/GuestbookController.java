@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.saramin.mysite.service.GuestbookService;
 import kr.co.saramin.mysite.vo.GuestbookVo;
@@ -17,16 +18,30 @@ public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
 
-	@RequestMapping( "/list" )
-	@ResponseBody
-	public String list( Model model ){
-		List<GuestbookVo> list = 
-				guestbookService.getList();
-		
-		System.out.println( list );
+	@RequestMapping( "" )
+	public String index( Model model ) {
+		List<GuestbookVo> list = guestbookService.getMessageList();
 		model.addAttribute( "list", list );
-	
-		return "GuestbookController:list";
+		return "/WEB-INF/views/guestbook/list.jsp";
 	}
+	
+	@RequestMapping( "/deleteform/{no}" )
+	public String deletefrom( @PathVariable( "no" ) Long no, Model model ) {
+		model.addAttribute( "no", no );
+		return "/WEB-INF/views/guestbook/deleteform.jsp";
+	}
+
+	@RequestMapping( "/delete" )
+	public String delete( @ModelAttribute GuestbookVo vo ) {
+		guestbookService.deleteMessage(vo);
+		return "redirect:/guestbook";
+	}
+
+	@RequestMapping( "/insert" )
+	public String insert( @ModelAttribute GuestbookVo vo ) {
+		guestbookService.insertMessage(vo);
+		return "redirect:/guestbook";
+	}
+
 
 }

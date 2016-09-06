@@ -77,7 +77,8 @@ public class GuestbookDao {
 		}
 	}
 	
-	public void insert( GuestbookVo vo ) {
+	public int insert( GuestbookVo vo ) {
+		int count = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try{
@@ -90,7 +91,7 @@ public class GuestbookDao {
 			pstmt.setString( 2, vo.getMessage() );
 			pstmt.setString( 3, vo.getPassword() );
 
-			pstmt.executeUpdate();
+			count = pstmt.executeUpdate();
 			
 		} catch( SQLException ex ) {
 			ex.printStackTrace();
@@ -106,9 +107,12 @@ public class GuestbookDao {
 				ex.printStackTrace();
 			}
 		}
+		
+		return count;
 	}
 	
-	public void delete( GuestbookVo vo ) {
+	public int delete( GuestbookVo vo ) {
+		int count = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try{
@@ -117,7 +121,7 @@ public class GuestbookDao {
 			pstmt = conn.prepareStatement( sql );
 			pstmt.setLong( 1,  vo.getNo() );
 			pstmt.setString( 2, vo.getPassword() );
-			pstmt.executeUpdate();
+			count = pstmt.executeUpdate();
 		} catch( SQLException ex ) {
 			ex.printStackTrace();
 		} finally {
@@ -132,6 +136,8 @@ public class GuestbookDao {
 				ex.printStackTrace();
 			}
 		}
+		
+		return count;
 	}
 	
 	public List<GuestbookVo> getList() {
