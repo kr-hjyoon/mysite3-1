@@ -4,26 +4,25 @@
 	
 	<insert id="insert" parameterType="uservo">
 		<![CDATA[
-		INSERT INTO user 
+		INSERT
+		  INTO user 
 		VALUES (null, #{name }, #{email }, password( #{password }), #{gender } )
 		]]>
 	</insert>
 	
-	<select
-		id="getByEmailAndPassword"
-		parameterType="uservo"
-		resultType="uservo">
+	<select id="getByEmailAndPassword" parameterType="uservo" resultType="uservo">
 		<![CDATA[
 		SELECT no, name 
 		  FROM user 
-		 WHERE email=#{email } AND passwd=password(#{password })	
+		 WHERE email=#{email }
+		   AND passwd=password(#{password })	
 		]]>
 	</select>
 	
 	<update id="update" parameterType="uservo">
 		<![CDATA[
-		update user
-		   set name = #{name },
+		UPDATE user
+		   SET name = #{name },
 		]]>   
 			<if test="password != null and password != ''">
 				<![CDATA[		
@@ -32,8 +31,8 @@
 			</if>
 		<![CDATA[		
 	           gender = #{gender }
-		 where no = #{no }
-		 ]]>       
+		WHERE no = #{no }
+		]]>       
 	</update>
 	
 	
