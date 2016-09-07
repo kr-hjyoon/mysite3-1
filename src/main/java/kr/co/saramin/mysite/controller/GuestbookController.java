@@ -13,7 +13,7 @@ import kr.co.saramin.mysite.service.GuestbookService;
 import kr.co.saramin.mysite.vo.GuestbookVo;
 
 @Controller
-@RequestMapping( "/guestbook" )
+@RequestMapping( value={"/guestbook", "/gb"} )
 public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;

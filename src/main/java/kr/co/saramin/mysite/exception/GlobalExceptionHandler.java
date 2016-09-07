@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
-	@ExceptionHandler( UserDaoException.class )
+	@ExceptionHandler( Exception.class )
 	@ResponseStatus( HttpStatus.INTERNAL_SERVER_ERROR )
 	public String handleUserDaoException( Exception ex ){
 		System.out.println( "logging:" + ex );

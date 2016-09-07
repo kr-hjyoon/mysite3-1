@@ -18,6 +18,25 @@ import kr.co.saramin.mysite.vo.UserVo;
 public class UserController {
 	@Autowired
 	UserService userService;
+
+	@RequestMapping( "/update" )
+	public String update( HttpSession session ) {
+		UserVo authUser =
+			(UserVo)session.getAttribute( "authUser" );
+		if( authUser == null ) {
+			return "redirect:/index";
+		}
+		
+		UserVo userVo = new UserVo();
+		userVo.setNo( authUser.getNo() );
+		userVo.setName( "안대혁2" );
+		userVo.setPassword( "5678" );
+		userVo.setGender( "FEMALE" );
+		
+		userService.modifyUser( userVo );
+		
+		return "redirect:/index";
+	}
 	
 	@RequestMapping( "/joinform" )
 	public String joinform(){

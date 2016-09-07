@@ -15,6 +15,10 @@ public class UserService {
 		userDao.insert( userVo );
 	}
 	
+	public void modifyUser( UserVo userVo ) {
+		userDao.update( userVo );
+	}
+	
 	public UserVo login( UserVo userVo ){
 		return userDao.get( userVo );
 	}
