@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-			<h1><a href="/mysite3/index">MySite</a></h1>
+			<h1><a href="/mysite3">MySite</a></h1>
 			<ul>
 				<c:choose>
 					<c:when test="${not empty authUser }">
