@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import kr.co.saramin.mysite.service.UserService;
 import kr.co.saramin.mysite.vo.UserVo;
 
@@ -17,19 +18,13 @@ public class UserController {
 	UserService userService;
 
 	@RequestMapping( "/update" )
-	public String update( HttpSession session ) {
-		UserVo authUser =
-			(UserVo)session.getAttribute( "authUser" );
+	public String update( HttpSession session, @ModelAttribute UserVo userVo ) {
+		UserVo authUser = (UserVo)session.getAttribute( "authUser" );
 		if( authUser == null ) {
 			return "redirect:/";
 		}
-		
-		UserVo userVo = new UserVo();
+
 		userVo.setNo( authUser.getNo() );
-		userVo.setName( "안대혁2" );
-		userVo.setPassword( "5678" );
-		userVo.setGender( "FEMALE" );
-		
 		userService.modifyUser( userVo );
 		
 		return "redirect:/";
@@ -41,8 +36,7 @@ public class UserController {
 	}
 	
 	@RequestMapping( value="/join", method=RequestMethod.POST )
-	public String join(
-		@ModelAttribute UserVo userVo ) {
+	public String join( @ModelAttribute UserVo userVo ) {
 		userService.join( userVo );
 		return "redirect:/user/loginform";
 	}
