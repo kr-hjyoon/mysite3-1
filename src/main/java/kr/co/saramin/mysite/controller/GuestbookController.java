@@ -22,13 +22,13 @@ public class GuestbookController {
 	public String index( Model model ) {
 		List<GuestbookVo> list = guestbookService.getMessageList();
 		model.addAttribute( "list", list );
-		return "/WEB-INF/views/guestbook/list.jsp";
+		return "guestbook/list";
 	}
 	
 	@RequestMapping( "/deleteform/{no}" )
 	public String deletefrom( @PathVariable( "no" ) Long no, Model model ) {
 		model.addAttribute( "no", no );
-		return "/WEB-INF/views/guestbook/deleteform.jsp";
+		return "guestbook/deleteform";
 	}
 
 	@RequestMapping( "/delete" )

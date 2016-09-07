@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
+import kr.co.saramin.mysite.exception.UserDaoException;
 import kr.co.saramin.mysite.vo.UserVo;
 
 @Repository
@@ -75,12 +76,12 @@ public class UserDao {
 		}
 	}
 	
-	public void insert( UserVo vo ) {
+	public void insert( UserVo vo ) throws UserDaoException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
-			String sql = "INSERT INTO user VALUES (null, ?, ?, password(?), ? )";
+			String sql = "INSERT INTO user VALU (null, ?, ?, password(?), ? )";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString( 1, vo.getName() );
@@ -91,7 +92,7 @@ public class UserDao {
 			pstmt.executeUpdate();
 			
 		} catch (SQLException ex) {
-			ex.printStackTrace();
+			throw new UserDaoException( ex.getMessage() );
 		} finally {
 			try{
 				if( pstmt != null ) {

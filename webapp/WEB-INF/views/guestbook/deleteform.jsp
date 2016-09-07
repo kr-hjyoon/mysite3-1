@@ -1,7 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>  
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%
-	String no = request.getParameter( "no" );
-%>
 <!doctype html>
 <html>
 <head>
@@ -33,11 +33,7 @@
 			</div>
 		</div>
 		<div id="navigation">
-			<ul>
-				<li><a href="">안대혁</a></li>
-				<li><a href="">방명록</a></li>
-				<li><a href="">게시판</a></li>
-			</ul>
+			<c:import url="/WEB-INF/views/include/navigation.jsp"/>
 		</div>
 		<div id="footer">
 			<p>(c)opyright 2015</p>

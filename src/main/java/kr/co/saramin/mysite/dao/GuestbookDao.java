@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import kr.co.saramin.mysite.exception.UserDaoException;
 import kr.co.saramin.mysite.vo.GuestbookVo;
 
 @Repository
@@ -165,7 +166,7 @@ public class GuestbookDao {
 				list.add( vo );
 			}
 		} catch( SQLException ex ) {
-			System.out.println( "error: " + ex);
+			ex.printStackTrace();
 		} finally {
 			try{
 				if( rs != null ) {

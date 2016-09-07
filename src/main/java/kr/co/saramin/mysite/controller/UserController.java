@@ -4,10 +4,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.saramin.mysite.exception.UserDaoException;
 import kr.co.saramin.mysite.service.UserService;
 import kr.co.saramin.mysite.vo.UserVo;
 
@@ -19,7 +21,7 @@ public class UserController {
 	
 	@RequestMapping( "/joinform" )
 	public String joinform(){
-		return "/WEB-INF/views/user/joinform.jsp";
+		return "user/joinform";
 	}
 	
 	@RequestMapping( value="/join", method=RequestMethod.POST )
@@ -31,7 +33,7 @@ public class UserController {
 	
 	@RequestMapping( "/loginform" )
 	public String loginform(){
-		return "/WEB-INF/views/user/loginform.jsp";
+		return "user/loginform";
 	}
 	
 	@RequestMapping( "/login" )
@@ -56,5 +58,6 @@ public class UserController {
 		return "redirect:/index";
 	}
 	
+
 	
 }
