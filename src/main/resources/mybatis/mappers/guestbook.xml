@@ -7,7 +7,8 @@
 			resultType="guestbookvo">
 		SELECT no, 
 			   name, 
-			   DATE_FORMAT( reg_date, '%Y-%m-%d %p %h:%i:%s' ), message 
+			   DATE_FORMAT( reg_date, '%Y-%m-%d %p %h:%i:%s' ),
+			   message 
 	      FROM guestbook
 	     WHERE no = #{no }
 	</select>
@@ -31,7 +32,7 @@
 		]]>
 		<selectKey keyProperty="no" resultType="long" order="AFTER">
 			<![CDATA[
-			select last_insert_id()
+			SELECT LAST_INSERT_ID()
 			]]>
 		</selectKey>
 	</insert>
