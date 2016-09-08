@@ -10,7 +10,11 @@ import kr.co.saramin.mysite.vo.UserVo;
 public class UserService {
 	@Autowired
 	private UserDao userDao;
-	
+
+	public UserVo getUser( Long no ) {
+		return userDao.get( no );
+	}
+
 	public UserVo getUser( String email ) {
 		return userDao.get( email );
 	}

@@ -23,8 +23,9 @@ public class UserController {
 	@Auth
 	@RequestMapping( "/updateform" )
 	public String updateform( @AuthUser UserVo authUser, Model model ) {
-//		UserVo userVo = userService.getUser( authUser.getNo() );
-//		model.addAttribute( "userVo", userVo );
+
+		UserVo userVo = userService.getUser( authUser.getNo() );
+		model.addAttribute( "userVo", userVo );
 		
 		return "user/updateform";
 	}
@@ -36,7 +37,7 @@ public class UserController {
 		userVo.setNo( authUser.getNo() );
 		userService.modifyUser( userVo );
 		
-		return "redirect:/";
+		return "redirect:/user/updateform";
 	}
 	
 	@RequestMapping( "/joinform" )
