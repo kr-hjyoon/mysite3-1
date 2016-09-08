@@ -46,4 +46,15 @@
 		<property name="order" value="1" />
 	</bean>
 
+   <!-- Interceptors -->
+    <mvc:interceptors>
+    
+        <mvc:interceptor>
+        	<mvc:mapping path="/user/login" /> 
+    		<bean class="kr.co.saramin.security.AuthLoginInterceptor" />
+        </mvc:interceptor>
+        
+        
+    </mvc:interceptors>
+
 </beans>
