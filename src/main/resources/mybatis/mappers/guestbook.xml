@@ -7,7 +7,9 @@
 			resultType="guestbookvo">
 		SELECT no, 
 			   name, 
-			   DATE_FORMAT( reg_date, '%Y-%m-%d %p %h:%i:%s' ), message from guestbook
+			   DATE_FORMAT( reg_date, '%Y-%m-%d %p %h:%i:%s' ),
+			   message 
+	      FROM guestbook
 	     WHERE no = #{no }
 	</select>
 	
@@ -24,11 +26,14 @@
 	
 	<insert id="insert" parameterType="guestbookvo">
 		<![CDATA[
-		INSERT INTO guestbook 
-		VALUES( null, #{name }, now(), #{message }, password( #{password } ) )
+		INSERT
+		  INTO guestbook 
+		VALUES ( null, #{name }, now(), #{message }, password( #{password } ) )
 		]]>
 		<selectKey keyProperty="no" resultType="long" order="AFTER">
-			select last_insert_id()
+			<![CDATA[
+			SELECT LAST_INSERT_ID()
+			]]>
 		</selectKey>
 	</insert>
 	
