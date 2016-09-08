@@ -23,8 +23,6 @@ public class UserController {
 	@Auth
 	@RequestMapping( "/updateform" )
 	public String updateform( @AuthUser UserVo authUser, Model model ) {
-		
-		System.out.println( authUser );
 //		UserVo userVo = userService.getUser( authUser.getNo() );
 //		model.addAttribute( "userVo", userVo );
 		
@@ -33,11 +31,7 @@ public class UserController {
 	
 	@Auth
 	@RequestMapping( "/update" )
-	public String update( HttpSession session, @ModelAttribute UserVo userVo ) {
-		UserVo authUser = (UserVo)session.getAttribute( "authUser" );
-		if( authUser == null ) {
-			return "redirect:/";
-		}
+	public String update( @AuthUser UserVo authUser, @ModelAttribute UserVo userVo ) {
 
 		userVo.setNo( authUser.getNo() );
 		userService.modifyUser( userVo );
