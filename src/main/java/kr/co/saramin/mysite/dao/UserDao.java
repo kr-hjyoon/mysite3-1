@@ -17,6 +17,10 @@ public class UserDao {
 		sqlSession.update( "user.update", vo );
 	}
 	
+	public UserVo get( String email ) {
+		return sqlSession.selectOne( "user.getByEmail", email );
+	}
+	
 	public UserVo get( UserVo vo ) {
 		return sqlSession.selectOne( "user.getByEmailAndPassword", vo );
 	}

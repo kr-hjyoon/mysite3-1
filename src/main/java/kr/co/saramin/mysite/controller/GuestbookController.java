@@ -25,6 +25,12 @@ public class GuestbookController {
 		return "guestbook/list";
 	}
 	
+	@RequestMapping( "/ajax" )
+	public String index() {
+		return "guestbook/ajax";
+	}
+	
+	
 	@RequestMapping( "/deleteform/{no}" )
 	public String deletefrom( @PathVariable( "no" ) Long no, Model model ) {
 		model.addAttribute( "no", no );
@@ -42,6 +48,4 @@ public class GuestbookController {
 		guestbookService.insertMessage(vo);
 		return "redirect:/guestbook";
 	}
-
-
 }
